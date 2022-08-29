@@ -15,7 +15,7 @@ class SortViewSet(mixins.BaseModelViewSet):
 
     def __make_random_array(self, max_size):
 
-        return np.random.choice(range(1, max_size + 10), max_size, replace=False)
+        return np.random.choice(range(1, 100), max_size, replace=False)
 
     def __bubble_sort(self, data):
 
@@ -32,9 +32,6 @@ class SortViewSet(mixins.BaseModelViewSet):
 
             for i in range(loop):
 
-                print(data[i] > data[i + 1])
-                
-
                 if data[i] > data[i + 1]:
 
                     data[i], data[i + 1] = data[i + 1], data[i]
@@ -47,7 +44,7 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags = ["선형 검색"], operation_description="선형검색")
+    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags = ["정렬 알고리즘"], operation_description="bubble, selection, insertionm merge, quick")
     def list(self, request, *args, **kwargs):
 
         sort_type = request.GET.get("sort_type", None)
@@ -56,7 +53,11 @@ class SortViewSet(mixins.BaseModelViewSet):
 
             return Response(Error.error("정렬 타입을 지정해주세요."), status = status.HTTP_400_BAD_REQUEST)
 
-        max_arr_size = int(request.GET.get("max_size", 20))
+        max_arr_size = int(request.GET.get("max_size", None))
+
+        if max_arr_size is None:
+            return Response(Error.error("데이터 크기를 정해주세요."), status = status.HTTP_400_BAD_REQUEST)
+
 
         if sort_type == "bubble":
 
