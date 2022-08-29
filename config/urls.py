@@ -17,6 +17,10 @@ schema_view = get_schema_view(
     permission_classes=[permissions.AllowAny],
 )
 
+routers = DefaultRouter()
+
+#routers.register("")
+
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),

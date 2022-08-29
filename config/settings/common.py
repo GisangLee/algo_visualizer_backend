@@ -34,7 +34,7 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJ_APPS = [
-
+    "sorts",
 ]
 
 MIDDLEWARE = [
