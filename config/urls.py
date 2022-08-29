@@ -20,11 +20,11 @@ schema_view = get_schema_view(
 
 routers = DefaultRouter()
 
-routers.register("", sort_views.SortViewSet, basename="linear_sorts")
+routers.register("", sort_views.SortViewSet, basename="sorts")
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path(r"api-v1/linear-sorts", include(routers.urls)),
+    path(r"api-v1/sorts/", include(routers.urls)),
     path('__debug__/', include('debug_toolbar.urls')),
     
     path(r'api-v1/algo_visualizer/swagger(?P<format>\.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),

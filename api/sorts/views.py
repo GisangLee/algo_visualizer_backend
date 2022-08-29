@@ -23,17 +23,23 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         sorted = False
 
-        result = []
+        initial_data = copy.deepcopy(data)
+
+        result = [initial_data]
 
         while not sorted:
             sorted = True
 
             for i in range(loop):
-                tmp = copy.deepcopy(data)
+
+                print(data[i] > data[i + 1])
+                
 
                 if data[i] > data[i + 1]:
 
                     data[i], data[i + 1] = data[i + 1], data[i]
+
+                    tmp = copy.deepcopy(data)
                     result.append(tmp)
                     sorted = False
 
@@ -44,13 +50,22 @@ class SortViewSet(mixins.BaseModelViewSet):
     @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags = ["선형 검색"], operation_description="선형검색")
     def list(self, request, *args, **kwargs):
 
-        sort_type = request.GET.get("sort_type", "linear")
-        max_arr_size = int(request.GET.get("max_size", 50))
+        sort_type = request.GET.get("sort_type", None)
 
-        random_data = self.__make_random_array(max_size = max_arr_size)
+        if sort_type is None:
 
-        sorted_list = self.__bubble_sort(random_data)
-        return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status = status.HTTP_200_OK)
+            return Response(Error.error("정렬 타입을 지정해주세요."), status = status.HTTP_400_BAD_REQUEST)
+
+        max_arr_size = int(request.GET.get("max_size", 20))
+
+        if sort_type == "bubble":
+
+            random_data = self.__make_random_array(max_size = max_arr_size)
+
+            sorted_list = self.__bubble_sort(random_data)
+            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status = status.HTTP_200_OK)
+        else:
+            return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status = status.HTTP_200_OK)
 
 
 
