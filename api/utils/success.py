@@ -3,8 +3,6 @@
 class Success(object):
 
     def __set_response(self, *args):
-        print(f"args : {args}")
-        
         if args:
             self.__response = {
                 "action": args[0],
@@ -22,6 +20,5 @@ class Success(object):
 
     @classmethod
     def response(cls, *args):
-        print(f"ARGS : {args}")
         Success.__set_response(cls, *args)
         return Success.__response
