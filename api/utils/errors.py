@@ -1,12 +1,13 @@
 class Error(object):
 
-    def __init__(self, msg):
+    def __set_error(self, msg):
 
         self.__error = {
             "errors": msg
         }
 
     @classmethod
-    def error(self):
+    def error(cls, msg):
+        Error.__set_error(cls, msg)
 
-        return self.__error
+        return Error.__error
