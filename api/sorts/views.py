@@ -1,4 +1,5 @@
 import copy
+import json
 import numpy as np
 from django.shortcuts import render
 from rest_framework import permissions, filters, status
@@ -10,6 +11,7 @@ from utils import mixins
 from utils.errors import Error
 from utils.success import Success
 from utils.swaggers import bubble_sorts_doc
+
 
 class SortViewSet(mixins.BaseModelViewSet):
 
@@ -44,29 +46,32 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags = ["정렬 알고리즘"], operation_description="bubble, selection, insertionm merge, quick")
+    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags=["정렬 알고리즘"], operation_description="bubble, selection, insertionm merge, quick")
     def list(self, request, *args, **kwargs):
 
         sort_type = request.GET.get("sort_type", None)
 
         if sort_type is None:
 
-            return Response(Error.error("정렬 타입을 지정해주세요."), status = status.HTTP_400_BAD_REQUEST)
+            return Response(Error.error("정렬 타입을 지정해주세요."), status=status.HTTP_400_BAD_REQUEST)
 
         max_arr_size = int(request.GET.get("max_size", None))
 
         if max_arr_size is None:
-            return Response(Error.error("데이터 크기를 정해주세요."), status = status.HTTP_400_BAD_REQUEST)
+            return Response(Error.error("데이터 크기를 정해주세요."), status=status.HTTP_400_BAD_REQUEST)
 
+        data = request.GET.get("data", None)
+
+        if data is None:
+            return Response(Error.error("정렬할 데이터가 필요합니다."), status=status.HTTP_400_BAD_REQUEST)
+
+        data = json.loads(data)
 
         if sort_type == "bubble":
 
-            random_data = self.__make_random_array(max_size = max_arr_size)
+            #random_data = self.__make_random_array(max_size=max_arr_size)
 
-            sorted_list = self.__bubble_sort(random_data)
-            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status = status.HTTP_200_OK)
+            sorted_list = self.__bubble_sort(data)
+            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status=status.HTTP_200_OK)
         else:
-            return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status = status.HTTP_200_OK)
-
-
-
+            return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status=status.HTTP_200_OK)

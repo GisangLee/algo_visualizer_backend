@@ -22,4 +22,4 @@ auth_api_param = [
     make_api_param("system_key", openapi.IN_HEADER, "시스템 key", openapi.FORMAT_INT64, default=f"key {os.environ.get('SECRET_KEY')}"),
 ]
 
-bubble_sorts_list = base_api_param + auth_api_param
+bubble_sorts_list = base_api_param + auth_api_param + [ make_api_param("data", openapi.IN_QUERY, "데이터 ( 배열 ) ", openapi.TYPE_STRING)]
