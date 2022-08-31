@@ -3,7 +3,6 @@ from rest_framework.viewsets import ModelViewSet
 
 class BaseModelViewSet(ModelViewSet):
 
-
     serializer_class = None
     read_serializer_class = None
 

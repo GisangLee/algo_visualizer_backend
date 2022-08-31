@@ -6,7 +6,7 @@ ALLOWED_HOSTS = []
 
 THIRD_PARTY_APPS += ["debug_toolbar"]
 
-MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+MIDDLEWARE = ["corsheaders.middleware.CorsMiddleware", "debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
 INTERNAL_IPS = [
     # ...
