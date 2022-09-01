@@ -139,6 +139,8 @@ class SortViewSet(mixins.BaseModelViewSet):
         data = request.GET.get("data", None)
 
         data = data.split(",")
+
+        print(f"data : {data}")
         data = [int(x) for x in data]
 
         if data is None:
