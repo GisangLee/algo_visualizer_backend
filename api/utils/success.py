@@ -1,5 +1,4 @@
 
-
 class Success(object):
 
     def __set_response(self, *args):
@@ -8,7 +7,7 @@ class Success(object):
                 "action": args[0],
                 "method": args[1],
                 "message": args[2],
-                "status_code": args[3]
+                "status_code": args[3],
             }
         else:
             self.__response = {
