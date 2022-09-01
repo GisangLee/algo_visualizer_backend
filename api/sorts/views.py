@@ -38,8 +38,8 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         sorted = False
 
-        colors = self.__generate_color_list(initial_data)
         initial_data = copy.deepcopy(data)
+        colors = self.__generate_color_list(initial_data)
         initial_color_data = copy.deepcopy(colors)
 
         result = [initial_data]
