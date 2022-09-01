@@ -137,12 +137,12 @@ class SortViewSet(mixins.BaseModelViewSet):
             return Response(Error.error("정렬 타입을 지정해주세요."), status=status.HTTP_400_BAD_REQUEST)
 
         data = request.GET.get("data", None)
+        swagger_data = json.loads(data)
 
         data = data.split(",")
 
         print(f"data : {data}")
 
-        swagger_data = json.loads(data)
         print(f"swagger_data : {swagger_data}")
 
         data = [int(x) for x in data]
