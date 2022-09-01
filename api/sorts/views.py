@@ -12,6 +12,7 @@ from utils.errors import Error
 from utils.success import Success
 from utils.swaggers import bubble_sorts_doc
 from sorts.serializers import ser
+from sorts import models as sort_models
 
 
 class SortViewSet(mixins.BaseModelViewSet):
@@ -19,6 +20,8 @@ class SortViewSet(mixins.BaseModelViewSet):
 
     serializer_class = ser.TmpSer
     read_serializer_class = ser.TmpSer
+
+    queryset = sort_models.Tmp.objects.all()
 
     def __make_random_array(self, max_size):
 
