@@ -37,6 +37,12 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         result = [initial_data]
 
+        colors = ["#424242" for i in range(len(initial_data))]
+
+        colors[0] = "#C74C4C"
+
+        color_result = copy.deepcopy(colors)
+
         while not sorted:
             sorted = True
 
@@ -46,13 +52,24 @@ class SortViewSet(mixins.BaseModelViewSet):
 
                     data[i], data[i + 1] = data[i + 1], data[i]
 
+                    colors[i], colors[i + 1] = colors[i], colors[i + 1]
+
                     tmp = copy.deepcopy(data)
+                    color_tmp = copy.deepcopy(colors)
+
                     result.append(tmp)
+                    color_result.append(color_tmp)
+
                     sorted = False
 
             loop -= 1
 
-        return result
+        response = {
+            "data": result,
+            "color": color_result
+        }
+
+        return response
 
     def __insertion_sort(self, data):
 
