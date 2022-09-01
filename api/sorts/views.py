@@ -40,12 +40,11 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         initial_data = copy.deepcopy(data)
         colors = self.__generate_color_list(initial_data)
+        colors[0] = "#C74C4C"
         initial_color_data = copy.deepcopy(colors)
 
         result = [initial_data]
         color_result = [initial_color_data]
-
-        color_result[0] = "#C74C4C"
 
         while not sorted:
             sorted = True
