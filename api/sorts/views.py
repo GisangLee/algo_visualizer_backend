@@ -56,7 +56,7 @@ class SortViewSet(mixins.BaseModelViewSet):
 
                     data[i], data[i + 1] = data[i + 1], data[i]
 
-                    colors[i], colors[i + 1] = colors[i], colors[i + 1]
+                    colors[i], colors[i + 1] = colors[i + 1], colors[i]
 
                     tmp = copy.deepcopy(data)
                     color_tmp = copy.deepcopy(colors)
