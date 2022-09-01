@@ -15,9 +15,10 @@ from sorts.serializers import ser
 
 
 class SortViewSet(mixins.BaseModelViewSet):
-#class SortViewSet(ModelViewSet):
+    # class SortViewSet(ModelViewSet):
 
     serializer_class = ser.TmpSer
+    read_serializer_class = ser.TmpSer
 
     def __make_random_array(self, max_size):
 
@@ -102,28 +103,26 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    def __quick_sort(self, data, start ,end):
+    def __quick_sort(self, data, start, end):
 
         pivot = start
         left = start+1
         right = end
 
         while left <= right:
-            # 피벗보다 큰 데이터를 찾을 때까지 반복 
-            while(left <= end and data[left] <= data[pivot]):
+            # 피벗보다 큰 데이터를 찾을 때까지 반복
+            while (left <= end and data[left] <= data[pivot]):
                 left += 1
             # 피벗보다 작은 데이터를 찾을 때까지 반복
-            while(right > start and data[right] >= data[pivot]):
+            while (right > start and data[right] >= data[pivot]):
                 right -= 1
-            if(left > right): # 엇갈렸다면 작은 데이터와 피벗을 교체
+            if (left > right):  # 엇갈렸다면 작은 데이터와 피벗을 교체
                 data[right], data[pivot] = data[pivot], data[right]
-            else: # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체
+            else:  # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체
                 data[left], data[right] = data[right], data[left]
         # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
         self.__quick_sort(data, start, right - 1)
         self.__quick_sort(data, right + 1, end)
-
-
 
     @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags=["정렬 알고리즘"], operation_description="bubble, selection, insertionm merge, quick")
     def list(self, request, *args, **kwargs):
@@ -138,7 +137,7 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         data = data.split(",")
         data = [int(x) for x in data]
-        
+
         if data is None:
             return Response(Error.error("정렬할 데이터가 필요합니다."), status=status.HTTP_400_BAD_REQUEST)
 
