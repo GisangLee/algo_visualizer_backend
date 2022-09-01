@@ -141,11 +141,12 @@ class SortViewSet(mixins.BaseModelViewSet):
         data = data.split(",")
 
         print(f"data : {data}")
-        data = [int(x) for x in data]
 
         swagger_data = json.loads(data)
         print(f"swagger_data : {swagger_data}")
 
+        data = [int(x) for x in data]
+        
         if data is None:
             return Response(Error.error("정렬할 데이터가 필요합니다."), status=status.HTTP_400_BAD_REQUEST)
 
