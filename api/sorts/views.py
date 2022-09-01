@@ -27,21 +27,25 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return np.random.choice(range(1, 100), max_size, replace=False)
 
+    def __generate_color_list(self, initial_data):
+
+        colors = ["#424242" for i in range(len(initial_data))]
+        return colors
+
     def __bubble_sort(self, data):
 
         loop = len(data) - 1
 
         sorted = False
 
+        colors = self.__generate_color_list(initial_data)
         initial_data = copy.deepcopy(data)
+        initial_color_data = copy.deepcopy(colors)
 
         result = [initial_data]
+        color_result = [initial_color_data]
 
-        colors = ["#424242" for i in range(len(initial_data))]
-
-        colors[0] = "#C74C4C"
-
-        color_result = copy.deepcopy(colors)
+        color_result[0] = "#C74C4C"
 
         while not sorted:
             sorted = True
@@ -68,6 +72,8 @@ class SortViewSet(mixins.BaseModelViewSet):
             "data": result,
             "color": color_result
         }
+
+        print(f"response : {response.get('color')}")
 
         return response
 
