@@ -72,8 +72,6 @@ class SortViewSet(mixins.BaseModelViewSet):
             "color": color_result
         }
 
-        print(f"response : {response.get('color')}")
-
         return response
 
     def __insertion_sort(self, data):
