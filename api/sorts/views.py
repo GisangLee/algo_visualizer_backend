@@ -253,7 +253,7 @@ class SortViewSet(mixins.BaseModelViewSet):
         elif sort_type == "quick":
             sorted_list = self.__quick_sort(data, 0, len(data) - 1)
             print(sorted_list)
-            return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status=status.HTTP_200_OK)
+            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status=status.HTTP_200_OK)
 
         else:
             return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status=status.HTTP_200_OK)
