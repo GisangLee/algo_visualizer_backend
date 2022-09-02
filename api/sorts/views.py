@@ -71,7 +71,10 @@ class SortViewSet(mixins.BaseModelViewSet):
 
                 end += 1
 
-                each_color[-1][-1:-end:-1] = "#4BDEE1"
+                for elm in each_color[-1:-end:-1]:
+                    idx = each_color.index(elm)
+
+                    each_color[idx] = "#4BDEE1"
 
                 # end = idx + 1
 
