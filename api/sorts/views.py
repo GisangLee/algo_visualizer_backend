@@ -65,8 +65,10 @@ class SortViewSet(mixins.BaseModelViewSet):
 
                     sorted = False
 
-            for _, color in enumerate(color_result):
+            for _, color in enumerate(color_result[1:]):
                 color[-1] = "#4BDEE1"
+
+            print(f"colors : {color_result}")
 
             loop -= 1
 
