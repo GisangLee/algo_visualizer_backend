@@ -1,5 +1,4 @@
-from re import search
-from django.shortcuts import render
+import copy
 from rest_framework import status
 from rest_framework.response import Response
 from searchings import serializers
@@ -16,7 +15,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
     queryset = searching_models.STmp.objects.all()
 
-    def __linear_search(self, data):
+    def __linear_search(self, data, targaet):
         """ 선형탐색
 
         Args:
@@ -24,10 +23,17 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         Returns:
             result ( list ): 선형탐색 과정이 전부 담긴 2차원 배열 
-        
-        """
-        return 0
 
+        """
+        result = []
+
+        for i in range(len(data)):
+            result.append(i)
+
+            if targaet == data[i]:
+                break
+
+        return result
 
     def __binary_search(self, data):
         """ 이진 탐색 
@@ -37,7 +43,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         Returns
             result (list): 이진탐색 과정이 전부 담긴 2차원 배열
-        
+
         """
         return 0
 
@@ -49,10 +55,10 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         Returns:
             result (list): 해시 탐색 과정이 전부 담긴 2차원 배열 
-        
+
         """
 
-        return 0 
+        return 0
 
     def list(self, request):
 
@@ -62,19 +68,19 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         if search_type is None or initial_data is None:
 
-            return Response(Error.error("데이터 혹은 탐색 알고리즘 모두 지정 해야합니다."), status = status.HTTP_400_BAD_REQUEST)
+            return Response(Error.error("데이터 혹은 탐색 알고리즘 모두 지정 해야합니다."), status=status.HTTP_400_BAD_REQUEST)
 
         if search_type == "linear":
-            sorted_list = self.__linear_search(initial_data)
-            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, 200))
+            searched_index = self.__linear_search(initial_data)
+            return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "binary":
-            sorted_list = self.__binary_search(initial_data)
-            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, 200))
+            searched_index = self.__binary_search(initial_data)
+            return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "hash":
-            sorted_list = self.__hash_search(initial_data)
-            return Response(Success.response(self.__class__.__name__, request.method, sorted_list, 200))
+            searched_index = self.__hash_search(initial_data)
+            return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         else:
-            return Response(Error.error("올바른 탐색 알고리즘이 아닙니다."), status = status.HTTP_400_BAD_REQUEST)
+            return Response(Error.error("올바른 탐색 알고리즘이 아닙니다."), status=status.HTTP_400_BAD_REQUEST)
