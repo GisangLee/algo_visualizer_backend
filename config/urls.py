@@ -21,8 +21,8 @@ schema_view = get_schema_view(
 
 routers = DefaultRouter()
 
-routers.register("sorts/", sort_views.SortViewSet, basename="sorts")
-routers.register("searchings/", searching_views.SearchViewSet, basename="searchings")
+routers.register("sorts", sort_views.SortViewSet, basename="sorts")
+routers.register("searchings", searching_views.SearchViewSet, basename="searchings")
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
