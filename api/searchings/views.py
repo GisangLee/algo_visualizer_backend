@@ -66,20 +66,22 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         initial_data = request.GET.get("data", None)
 
-        if search_type is None or initial_data is None:
+        target = request.GET.get("target", None)
+
+        if search_type is None or initial_data is None or target is None:
 
             return Response(Error.error("데이터 혹은 탐색 알고리즘 모두 지정 해야합니다."), status=status.HTTP_400_BAD_REQUEST)
 
         if search_type == "linear":
-            searched_index = self.__linear_search(initial_data)
+            searched_index = self.__linear_search(initial_data, target)
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "binary":
-            searched_index = self.__binary_search(initial_data)
+            searched_index = self.__binary_search(initial_data, target)
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "hash":
-            searched_index = self.__hash_search(initial_data)
+            searched_index = self.__hash_search(initial_data, target)
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         else:
