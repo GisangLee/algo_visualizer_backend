@@ -257,4 +257,4 @@ class SortViewSet(mixins.BaseModelViewSet):
             return Response(Success.response(self.__class__.__name__, request.method, sorted_list, "200"), status=status.HTTP_200_OK)
 
         else:
-            return Response(Success.response(self.__class__.__name__, request.method, "만드는 중", "200"), status=status.HTTP_200_OK)
+            return Response(Error.error("올바른 정렬 알고리즘을 지정해주세요."), status=status.HTTP_400_BAD_REQUEST)
