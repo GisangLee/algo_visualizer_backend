@@ -221,7 +221,9 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         sort_type = request.GET.get("sort_type", None)
 
-        if sort_type is None or sort_type == "Sorting Algorithm":
+        print(f"sort_type : {sort_type}")
+
+        if sort_type is None:
 
             return Response(Error.error("정렬 타입을 지정해주세요."), status=status.HTTP_400_BAD_REQUEST)
 
