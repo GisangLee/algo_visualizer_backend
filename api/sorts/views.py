@@ -47,6 +47,7 @@ class SortViewSet(mixins.BaseModelViewSet):
         color_result = [initial_color_data]
 
         end = 2
+        tmp = -1
 
         while not sorted:
             sorted = True
@@ -67,16 +68,14 @@ class SortViewSet(mixins.BaseModelViewSet):
 
                     sorted = False
 
-            for last_color in color_result[-1]:
+            last_color_set = color_result[-1]
+            
+            for _ in last_color_set[-1:-end:-1]:
 
-                tmp = -1
-
-                for _ in last_color[-1:-end:-1]:
-
-                    last_color[tmp] = "#4BDEE1"
-                    tmp -= 1
-
-                end += 1
+                last_color_set[tmp] = "#4BDEE1"
+                
+            tmp -= 1
+            end += 1
 
             print(f"color_result : {color_result}")
 
