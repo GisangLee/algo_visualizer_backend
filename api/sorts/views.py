@@ -166,6 +166,10 @@ class SortViewSet(mixins.BaseModelViewSet):
         left = start+1
         right = end
 
+        initial_data = copy.deepcopy(data)
+
+        result = [initial_data]
+
         while left <= right:
             # 피벗보다 큰 데이터를 찾을 때까지 반복
             while (left <= end and data[left] <= data[pivot]):
@@ -173,13 +177,26 @@ class SortViewSet(mixins.BaseModelViewSet):
             # 피벗보다 작은 데이터를 찾을 때까지 반복
             while (right > start and data[right] >= data[pivot]):
                 right -= 1
+
             if (left > right):  # 엇갈렸다면 작은 데이터와 피벗을 교체
                 data[right], data[pivot] = data[pivot], data[right]
+
             else:  # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체
                 data[left], data[right] = data[right], data[left]
+            
+            tmp = copy.deepcopy(data)
+            result.append(tmp)
+
         # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
         self.__quick_sort(data, start, right - 1)
         self.__quick_sort(data, right + 1, end)
+
+        response = {
+            "data": result,
+            "color": []
+        }
+
+        return response
 
     @swagger_auto_schema(manual_parameters=bubble_sorts_doc.bubble_sorts_list, tags=["정렬 알고리즘"], operation_description="bubble, selection, insertionm merge, quick")
     def list(self, request, *args, **kwargs):
