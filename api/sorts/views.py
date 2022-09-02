@@ -16,7 +16,6 @@ from sorts import models as sort_models
 
 
 class SortViewSet(mixins.BaseModelViewSet):
-    # class SortViewSet(ModelViewSet):
 
     serializer_class = ser.TmpSer
     read_serializer_class = ser.TmpSer
@@ -46,9 +45,6 @@ class SortViewSet(mixins.BaseModelViewSet):
         result = [initial_data]
         color_result = [initial_color_data]
 
-        # end = 2
-        # reverse_idx = -1
-
         while not sorted:
             sorted = True
 
@@ -61,33 +57,10 @@ class SortViewSet(mixins.BaseModelViewSet):
                     colors[i], colors[i + 1] = colors[i + 1], colors[i]
 
                     tmp = copy.deepcopy(data)
-                    # color_tmp = copy.deepcopy(colors)
 
                     result.append(tmp)
-                    # color_result.append(color_tmp)
 
                     sorted = False
-
-            # last_color_set = color_result[-1]
-
-            # print(f"last color set : {last_color_set}")
-            # print(f"end : {end}")
-            # print(f"reverse_idx : {reverse_idx}")
-
-            # for _ in last_color_set[-1:-end:-1]:
-            #     print(f"last color tmp : {last_color_set[reverse_idx]}")
-
-            #     last_color_set[reverse_idx] = "#4BDEE1"
-
-            # reverse_idx -= 1
-            # end += 1
-
-            # print(f"color_result : {color_result}")
-
-            # end = idx + 1
-
-            # print(f"colors : {color_result}")
-            # print(f" data : {result}")
 
             loop -= 1
 
@@ -115,16 +88,6 @@ class SortViewSet(mixins.BaseModelViewSet):
                 tmp = copy.deepcopy(data)
                 result.append(tmp)
                 j -= 1
-
-            # for idx in range(a, 0, -1):
-
-            #     if data[idx] < data[idx - 1]:
-            #         data[idx], data[idx - 1] = data[idx - 1], data[idx]
-            #         tmp = copy.deepcopy(data)
-            #         result.append(tmp)
-
-            #     else:
-            #         break
 
         response = {
             "data": result,
@@ -197,7 +160,7 @@ class SortViewSet(mixins.BaseModelViewSet):
             start = stack.pop()
 
             pivot, sorted_list = self.__partition(list, start, end)
-            
+
             tmp = copy.deepcopy(sorted_list)
             result.append(tmp)
 
