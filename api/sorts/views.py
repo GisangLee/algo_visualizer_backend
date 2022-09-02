@@ -160,36 +160,54 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return response
 
-    def __quick_sort(self, data, start, end):
-
-        pivot = start
-        left = start+1
+    def __partition(list, start, end):
+        pivot = list[start]
+        left = start + 1
         right = end
+        done = False
 
-        initial_data = copy.deepcopy(data)
+        while not done:
 
-        result = [initial_data]
-
-        while left <= right:
-            # 피벗보다 큰 데이터를 찾을 때까지 반복
-            while (left <= end and data[left] <= data[pivot]):
+            while left <= right and list[left] <= pivot:
                 left += 1
-            # 피벗보다 작은 데이터를 찾을 때까지 반복
-            while (right > start and data[right] >= data[pivot]):
+
+            while left <= right and list[right] > pivot:
                 right -= 1
 
-            if (left > right):  # 엇갈렸다면 작은 데이터와 피벗을 교체
-                data[right], data[pivot] = data[pivot], data[right]
+            if right < left:
+                done = True
 
-            else:  # 엇갈리지 않았다면 작은 데이터와 큰 데이터를 교체
-                data[left], data[right] = data[right], data[left]
+            else:
+                list[left], list[right] = list[right], list[left]
+
+        list[start], list[right] = list[right], list[start]  # 피봇 교환
+
+        return [right, list]
+
+    def __quick_sort(self, list, start, end):
+        stack = []
+        stack.append(start)
+        stack.append(end)
+
+        initial_data = copy.deepcopy(list)
+        result = [initial_data]
+
+        while stack:
+            end = stack.pop()
+            start = stack.pop()
+
+            pivot, sorted_list = self.__partition(list, start, end)
             
-            tmp = copy.deepcopy(data)
+            tmp = copy.deepcopy(sorted_list)
             result.append(tmp)
 
-        # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬 수행
-        self.__quick_sort(data, start, right - 1)
-        self.__quick_sort(data, right + 1, end)
+            if pivot - 1 > start:
+                stack.append(start)
+                stack.append(pivot - 1)
+
+            if pivot + 1 < end:
+                stack.append(pivot + 1)
+                stack.append(end)
 
         response = {
             "data": result,
