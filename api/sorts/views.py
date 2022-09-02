@@ -64,14 +64,16 @@ class SortViewSet(mixins.BaseModelViewSet):
                     color_result.append(color_tmp)
 
                     sorted = False
+            
 
-            for i in range(1, len(color_result)):
+            # for idx in range(len(color_result)):
 
-                end = i + 1
+            #     end = idx + 1
 
-                color_result[i][-1:-end:-1] = "#4BDEE1"
+            #     color_result[-1][-1:-end:-1] = "#4BDEE1"
 
-            print(f"colors : {color_result}")
+            #print(f"colors : {color_result}")
+            print(f" data : {result}")
 
             loop -= 1
 
