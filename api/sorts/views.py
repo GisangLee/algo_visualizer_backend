@@ -126,7 +126,12 @@ class SortViewSet(mixins.BaseModelViewSet):
             #     else:
             #         break
 
-        return result
+        response = {
+            "data": result,
+            "color": []
+        }
+
+        return response
 
     def __selection_sort(self, data):
 
@@ -148,7 +153,12 @@ class SortViewSet(mixins.BaseModelViewSet):
             tmp = copy.deepcopy(data)
             result.append(tmp)
 
-        return result
+        response = {
+            "data": result,
+            "color": []
+        }
+
+        return response
 
     def __quick_sort(self, data, start, end):
 
