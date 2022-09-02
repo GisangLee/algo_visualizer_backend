@@ -2,7 +2,7 @@ from .common import *
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "172.26.151.84"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "172.26.150.60"]
 
 THIRD_PARTY_APPS += ["debug_toolbar"]
 
