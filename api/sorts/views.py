@@ -160,7 +160,7 @@ class SortViewSet(mixins.BaseModelViewSet):
 
         return response
 
-    def __partition(list, start, end):
+    def __partition(self, list, start, end):
         pivot = list[start]
         left = start + 1
         right = end
