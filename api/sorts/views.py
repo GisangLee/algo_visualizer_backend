@@ -72,7 +72,7 @@ class SortViewSet(mixins.BaseModelViewSet):
                 divide_by = len(result) - 1
             
             print(f"divide_by : {divide_by}")
-            print(f"color len : {color_result[1:]}")
+            print(f"color len : {len(color_result[1:])}")
 
             for idx in range(1, (len(color_result[1:]) // divide_by) + 1):
 
