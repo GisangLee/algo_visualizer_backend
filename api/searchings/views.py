@@ -16,6 +16,6 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
     queryset = searching_models.STmp.objects.all()
 
-    def retrieve(self, request):
+    def list(self, request):
 
         return Response(Success.response(self.__class__.__name__, request.method, "테스트", 200), status=status.HTTP_200_OK)
