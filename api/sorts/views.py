@@ -46,8 +46,8 @@ class SortViewSet(mixins.BaseModelViewSet):
         result = [initial_data]
         color_result = [initial_color_data]
 
-        end = 2
-        reverse_idx = -1
+        # end = 2
+        # reverse_idx = -1
 
         while not sorted:
             sorted = True
@@ -61,28 +61,28 @@ class SortViewSet(mixins.BaseModelViewSet):
                     colors[i], colors[i + 1] = colors[i + 1], colors[i]
 
                     tmp = copy.deepcopy(data)
-                    color_tmp = copy.deepcopy(colors)
+                    # color_tmp = copy.deepcopy(colors)
 
                     result.append(tmp)
-                    color_result.append(color_tmp)
+                    # color_result.append(color_tmp)
 
                     sorted = False
 
-            last_color_set = color_result[-1]
+            # last_color_set = color_result[-1]
 
-            print(f"last color set : {last_color_set}")
-            print(f"end : {end}")
-            print(f"reverse_idx : {reverse_idx}")
+            # print(f"last color set : {last_color_set}")
+            # print(f"end : {end}")
+            # print(f"reverse_idx : {reverse_idx}")
 
-            for _ in last_color_set[-1:-end:-1]:
-                print(f"last color tmp : {last_color_set[reverse_idx]}")
+            # for _ in last_color_set[-1:-end:-1]:
+            #     print(f"last color tmp : {last_color_set[reverse_idx]}")
 
-                last_color_set[reverse_idx] = "#4BDEE1"
+            #     last_color_set[reverse_idx] = "#4BDEE1"
 
-            reverse_idx -= 1
-            end += 1
+            # reverse_idx -= 1
+            # end += 1
 
-            print(f"color_result : {color_result}")
+            # print(f"color_result : {color_result}")
 
             # end = idx + 1
 
