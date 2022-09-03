@@ -1,8 +1,9 @@
+import os
 from .common import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "172.26.151.84", "algo_backend"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", os.environ.get("SERVER_URL")]
 
 MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
 
