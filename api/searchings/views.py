@@ -37,7 +37,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    def __binary_search(self, data):
+    def __binary_search(self, data, target):
         """ 이진 탐색 
 
         Args:
@@ -47,7 +47,29 @@ class SearchViewSet(mixins.BaseModelViewSet):
             result (list): 이진탐색 과정이 전부 담긴 2차원 배열
 
         """
-        return 0
+
+        result = []
+
+        #data.sort()
+        
+        start = 0
+        end = len(data) - 1
+
+        while start <= end:
+            mid = (start + end) // 2
+
+            result.append(mid)
+
+            if data[mid] == target:
+                break
+
+            elif data[mid] < target:
+                start = mid + 1
+
+            else:
+                end = mid -1
+
+        return result
 
     def __hash_search(self, data):
         """ 해시 탐색
