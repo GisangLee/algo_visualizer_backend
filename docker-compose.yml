@@ -37,4 +37,6 @@ services:
         python3 manage.py collectstatic --no-input &&
         python3 manage.py makemigrations &&
         python3 manage.py migrate &&
-        gunicorn config.wsgi:application -b 0:80"
+        systemctl start gunicorn &&
+        systemctl enable gunicorn &&
+        gunicorn config.wsgi:application -b 0.0.0.0:8000"
