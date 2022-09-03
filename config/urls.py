@@ -26,7 +26,7 @@ routers.register("searchings", searching_views.SearchViewSet, basename="searchin
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path(r"/", include(routers.urls)),
+    path(r"api-v1/", include(routers.urls)),
     path('__debug__/', include('debug_toolbar.urls')),
 
     path(r'api-v1/algo_visualizer/swagger(?P<format>\.json|\.yaml)',
