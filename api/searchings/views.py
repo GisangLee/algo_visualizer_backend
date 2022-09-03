@@ -59,6 +59,10 @@ class SearchViewSet(mixins.BaseModelViewSet):
             mid = (start + end) // 2
 
             result.append(mid)
+            print(f"mid : {mid}")
+
+            print(f"data[mid] : {data[mid]}")
+            print(f"target : {target}")
 
             if data[mid] == target:
                 break
