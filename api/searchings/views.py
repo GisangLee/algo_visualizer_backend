@@ -72,6 +72,8 @@ class SearchViewSet(mixins.BaseModelViewSet):
             print(f"start : {start}")
             print(f"end : {end}")
 
+            print(f"result : {result}")
+
             if data[mid] == target:
                 result["mid"].append(mid)
                 result["start"].append(start)
