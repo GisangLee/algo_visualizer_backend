@@ -3,7 +3,7 @@ from .common import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", os.environ.get("SERVER_URL")]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", os.environ.get("SERVER_URL"), "https://www.algovisu.com"]
 
 MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware'] + MIDDLEWARE
 
