@@ -2,6 +2,8 @@ version: "3.7"
 
 services:
   nginx:
+
+    container_name: algo_visualization_nginx
     image:
       nginx:latest
     ports:
@@ -31,4 +33,4 @@ services:
       - .:/usr/src/algo_visualization_backend
 
     command: >
-      sh -c "gunicorn config.wsqi.application --bind 0.0.0.0:8000"
+      sh -c "cd ./algo_visualization_backend & gunicorn config.wsqi.application --bind 0.0.0.0:8000"
