@@ -33,4 +33,8 @@ services:
       - .:/usr/src/algo_visualization_backend
 
     command: >
-      sh -c "gunicorn algo_visualizer_backend.config.wsqi.application --bind 0.0.0.0:8000"
+      bash -c "
+        python3 manage.py collectstatic --no-input &&
+        python3 manage.py makemigrations &&
+        python3 manage.py migrate &&
+        gunicorn config.wsgi:application -b 0:80"
