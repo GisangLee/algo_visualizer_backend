@@ -33,6 +33,8 @@ class SearchViewSet(mixins.BaseModelViewSet):
             if targaet == data[i]:
                 break
 
+        print(f"linear search result : {result}")
+
         return result
 
     def __binary_search(self, data):
