@@ -5,7 +5,7 @@ services:
 
     container_name: algo_visualization_nginx
     image:
-      gisanglee/nginx:latest
+      nginx:latest
     ports:
       - "80:80"
     volumes:
@@ -15,8 +15,6 @@ services:
       - algo_backend
 
   algo_backend:
-    image:
-      gisanglee/algo_backend:latest
     build:
       context: ./
       dockerfile: Dockerfile
