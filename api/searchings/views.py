@@ -48,7 +48,11 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         """
 
-        result = []
+        result = {
+            "start":[],
+            "end": [],
+            "mid": []
+        }
 
         # data.sort()
 
@@ -66,18 +70,24 @@ class SearchViewSet(mixins.BaseModelViewSet):
             print(f"target : {target}")
 
             if data[mid] == target:
-                result.append(mid)
+                result["mid"].append(mid)
+                result["start"].append(start)
+                result["end"].append(end)
+
                 break
 
             elif data[mid] < target:
                 start = mid + 1
                 print(f"start : {start}")
-                result.append(start)
+
+
 
             else:
                 end = mid - 1
-                print(f"end : {end}")
-                result.append(end)
+
+            result["mid"].append(mid)
+            result["start"].append(start)
+            result["end"].append(end)
 
         return result
 
