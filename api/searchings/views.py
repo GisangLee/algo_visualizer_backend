@@ -68,6 +68,19 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         target = request.GET.get("target", None)
 
+        print(f"search type : {search_type}")
+        print(f"initial_data : {initial_data}")
+        print(f"target : {target}")
+        
+        data = data.split(",")
+
+        print(f"Data : {data}")
+
+        data = [int(x) for x in data]
+
+        print(f"data convert to int : {data}")
+
+
         if search_type is None or initial_data is None or target is None:
 
             return Response(Error.error("데이터 혹은 탐색 알고리즘 모두 지정 해야합니다."), status=status.HTTP_400_BAD_REQUEST)
