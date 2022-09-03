@@ -24,7 +24,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
             data ( list ): 선형탐색 초기 데이터
 
         Returns:
-            result ( list ): 선형탐색 과정이 전부 담긴 2차원 배열 
+            result ( list ): 선형탐색 과정이 전부 담긴 2차원 배열
 
         """
         result = []
@@ -38,7 +38,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
         return result
 
     def __binary_search(self, data, target):
-        """ 이진 탐색 
+        """ 이진 탐색
 
         Args:
             data (list): 이진탐색 초기 데이터
@@ -79,20 +79,53 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    def __hash_search(self, data):
+    def __hash_table(self, arr):
+
+        h_len = round(len(arr) * 1.5 + 0.5)
+        h_arr = [0 for i in range(h_len)]
+
+        i = 0
+
+        while i < len(arr):
+
+            k = arr[i] % h_len
+
+            if h_arr[k] is not 0:
+
+                while h_arr[k] is not 0:
+
+                    k = (k + 1) % h_len
+                    h_arr[k] = arr[i]
+
+            else:
+                h_arr[k] = arr[i]
+                i += 1
+
+        return h_arr
+
+    def __hash_search(self, data, target):
         """ 해시 탐색
 
         Args:
             data (list): 해시탐색 초기 데이터
 
         Returns:
-            result (list): 해시 탐색 과정이 전부 담긴 2차원 배열 
+            result (list): 해시 탐색 과정이 전부 담긴 2차원 배열
 
         """
+        k = target % len(data)
 
-        return 0
+        while data[k] is not 0:
 
-    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
+            if data[k] is target:
+                return k
+
+            else:
+                k = (k+1) % len(data)
+
+        return 'Not Found'
+
+    @ swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
     def list(self, request):
 
         search_type = request.GET.get("search_type", None)
@@ -116,7 +149,11 @@ class SearchViewSet(mixins.BaseModelViewSet):
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "hash":
-            searched_index = self.__hash_search(data, target)
+
+            hash_table = self.__hash_table(data)
+            print(f"hash table : {hash_table}")
+            searched_index = self.__hash_search(hash_table, target)
+            print(f"result : {searched_index}")
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         else:
