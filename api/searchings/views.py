@@ -1,9 +1,11 @@
 import copy
 from rest_framework import status
 from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
 from searchings import serializers
 from searchings import models as searching_models
 from utils import mixins
+from utils.swaggers import bubble_sorts_doc
 from utils.success import Success
 from utils.errors import Error
 
@@ -61,7 +63,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
         """
 
         return 0
-
+    @swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
     def list(self, request):
 
         search_type = request.GET.get("search_type", None)
