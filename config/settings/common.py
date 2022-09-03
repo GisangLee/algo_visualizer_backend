@@ -134,14 +134,14 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://127.0.0.1",
     "http://127.0.0.1:8000",
-    "https://www.algovisu.com/",
-    "https://www.algovisu.com/api-v1/"
+    "https://www.algovisu.com",
+    "https://www.algovisu.com/api-v1"
 ]
 
 CORS_ALLOWED_ORIGINS = [
     # 허용할 Origin 추가
-    "https://www.algovisu.com/",
-    "https://www.algovisu.com/api-v1/"
+    "https://www.algovisu.com",
+    "https://www.algovisu.com/api-v1"
     "http://localhost:8080",
     "http://127.0.0.1:9000"
 ]
