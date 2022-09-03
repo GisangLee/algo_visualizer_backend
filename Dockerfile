@@ -15,7 +15,7 @@ RUN mkdir algo_visualization_backend
 ADD . /algo_visualization_backend/
 
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r ./algo_visualization_backend/requirements.txt
 
 EXPOSE 8000
 
