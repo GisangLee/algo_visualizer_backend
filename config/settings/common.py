@@ -1,4 +1,5 @@
-import os, sys
+import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -14,7 +15,6 @@ sys.path.insert(0, os.path.join(PROJ_DIR, 'api'))
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
 
 
 # Application definition
@@ -129,9 +129,19 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CORS_ORIGIN_WHITELIST  = [
+CORS_ORIGIN_WHITELIST = [
     "http://localhost",
     "http://localhost:8080",
     "http://127.0.0.1",
     "http://127.0.0.1:8000",
+    "https://www.algovisu.com/",
+    "https://www.algovisu.com/api-v1/"
+]
+
+CORS_ALLOWED_ORIGINS = [
+    # 허용할 Origin 추가
+    "https://www.algovisu.com/",
+    "https://www.algovisu.com/api-v1/"
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
 ]
