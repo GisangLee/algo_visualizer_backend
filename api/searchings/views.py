@@ -81,7 +81,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
     def __hash_table(self, data):
 
-        list_by_zeros = [0 for i in round(len(data) * 1.5 + 0.5)]
+        list_by_zeros = [0 for i in range(round(len(data) * 1.5 + 0.5))]
 
         for i in range(len(data)):
             key = data[i] % 11
