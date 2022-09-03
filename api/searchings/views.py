@@ -110,17 +110,17 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         """
 
-        hash_table = self.__hash_table(data)
+        #hash_table = self.__hash_table(data)
 
-        key = target % len(hash_table)
+        key = target % len(data)
 
         # 찾고자 하는 값이 나올때까지
-        while (hash_table[key] != target):
+        while (data[key] != target):
             # 원하는 결과가 아니면 +1
-            key = (key + 1) % len(hash_table)
+            key = (key + 1) % len(data)
 
         #return [key + 1]
-        return [key]
+        return key
 
     @ swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
     def list(self, request):
