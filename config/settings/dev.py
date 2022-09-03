@@ -16,6 +16,8 @@ INTERNAL_IPS = [
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJ_APPS
 
-STATICFILES_DIR = [
-    os.path.join(PROJ_DIR, "static")
-]
+# STATICFILES_DIR = [
+#     os.path.join(PROJ_DIR, "static")
+# ]
+
+STATIC_ROOT = os.path.join(PROJ_DIR, "static")
