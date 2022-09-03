@@ -20,7 +20,8 @@ base_api_param = [
 
 search_base_api_param = [
     make_api_param("data", openapi.IN_QUERY, "데이터 ( 배열 ) ", openapi.TYPE_STRING),
-    make_api_param("sort_type", openapi.IN_QUERY, "정렬 타입 ( linear, binary 중 택 1 )", openapi.TYPE_STRING),
+    make_api_param("target", openapi.IN_QUERY, "타겟 데이터 ( 정수 ) ", openapi.TYPE_STRING),
+    make_api_param("search-type", openapi.IN_QUERY, "정렬 타입 ( linear, binary 중 택 1 )", openapi.TYPE_STRING),
 ]
 
 auth_api_param = [
