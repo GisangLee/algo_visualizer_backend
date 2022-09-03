@@ -69,9 +69,8 @@ class SearchViewSet(mixins.BaseModelViewSet):
             result["end"].append(end)
 
             print(f"mid : {mid}")
-
-            print(f"data[mid] : {data[mid]}")
-            print(f"target : {target}")
+            print(f"start : {start}")
+            print(f"end : {end}")
 
             if data[mid] == target:
                 result["mid"].append(mid)
