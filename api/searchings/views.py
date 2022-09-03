@@ -71,10 +71,12 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
             elif data[mid] < target:
                 start = mid + 1
+                print(f"start : {start}")
                 result.append(start)
 
             else:
                 end = mid - 1
+                print(f"end : {end}")
                 result.append(end)
 
         return result
