@@ -152,8 +152,8 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
             hash_table = self.__hash_table(data)
             print(f"hash table : {hash_table}")
-            searched_index = self.__hash_search(hash_table, target)
-            print(f"result : {searched_index}")
+            # searched_index = self.__hash_search(hash_table, target)
+            # print(f"result : {searched_index}")
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         else:
