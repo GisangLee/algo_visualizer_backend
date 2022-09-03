@@ -1,6 +1,6 @@
 FROM nginx:latest
 COPY ./nginx/nginx-app.conf /etc/nginx/sites-available/
-COPY ./algo_visualization_backend/gunicorn/ /etc/systemd/system/
+COPY ./gunicorn/ /etc/systemd/system/
 #COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /etc/nginx/sites-enabled/\
