@@ -79,32 +79,25 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         return result
 
-    def __hash_table(self, arr):
+    def __hash_table(self, data):
 
-        h_len = round(len(arr) * 1.5 + 0.5)
-        h_arr = [0 for i in range(h_len)]
+        list_by_zeros = [0 for i in round(len(data) * 1.5 + 0.5)]
 
-        i = 0
+        for i in range(len(data)):
+            key = data[i] % 11
 
-        while i < len(arr):
-
-            print(f"i : {i}")
-            print(f"len(arr) : {len(arr)}")
-
-            k = arr[i] % h_len
-
-            if h_arr[k] != 0:
-
-                while h_arr[k] != 0:
-
-                    k = (k + 1) % h_len
-                    h_arr[k] = arr[i]
-
+            if (list_by_zeros[key] == None):
+                list_by_zeros[key] = data[i]
             else:
-                h_arr[k] = arr[i]
-                i += 1
+                while (list_by_zeros[key]):
+                    if (key < len(list_by_zeros)-1):
+                        key += 1
+                    else:
+                        key = 0
 
-        return h_arr
+                list_by_zeros[key] = data[i]
+
+        return list_by_zeros
 
     def __hash_search(self, data, target):
         """ 해시 탐색
