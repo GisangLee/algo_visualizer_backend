@@ -72,7 +72,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
         print(f"initial_data : {initial_data}")
         print(f"target : {target}")
         
-        data = data.split(",")
+        data = initial_data.split(",")
 
         print(f"Data : {data}")
 
