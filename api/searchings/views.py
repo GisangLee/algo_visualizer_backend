@@ -51,7 +51,9 @@ class SearchViewSet(mixins.BaseModelViewSet):
         result = []
 
         #data.sort()
-        
+
+        print(f"data : {data}")
+
         start = 0
         end = len(data) - 1
 
