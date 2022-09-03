@@ -126,20 +126,20 @@ MEDIA_ROOT = os.path.join(PROJ_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://127.0.0.1",
-    "http://127.0.0.1:8000",
-    "https://www.algovisu.com",
-]
+# CORS_ORIGIN_WHITELIST = [
+#     "http://localhost",
+#     "http://localhost:8080",
+#     "http://127.0.0.1",
+#     "http://127.0.0.1:8000",
+#     "https://www.algovisu.com",
+# ]
 
-CORS_ALLOWED_ORIGINS = [
-    # 허용할 Origin 추가
-    "https://www.algovisu.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000"
-]
+# CORS_ALLOWED_ORIGINS = [
+#     # 허용할 Origin 추가
+#     "https://www.algovisu.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000"
+# ]
