@@ -12,9 +12,10 @@ RUN apt-get -y update && apt-get clean
 
 RUN mkdir algo_visualization_backend
 
+ADD /algo_visualization_backend/gunicorn/gunicorn.service /etc/systemd/system/gunicorn.service
+
 ADD . /algo_visualization_backend/
 
-ADD ./algo_visualization_backend/gunicorn/gunicorn.service /etc/systemd/system/gunicorn.service
 
 RUN pip install --upgrade pip
 RUN pip install -r ./algo_visualization_backend/requirements.txt
