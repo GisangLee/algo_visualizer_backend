@@ -14,7 +14,7 @@ RUN mkdir algo_visualization_backend
 
 ADD . /algo_visualization_backend/
 
-COPY ./algo_visualization_backend/gunicorn/gunicorn.service /etc/systemd/system/gunicorn.service
+COPY /algo_visualization_backend/gunicorn/gunicorn.service /etc/systemd/system/gunicorn.service
 
 RUN pip install --upgrade pip
 RUN pip install -r ./algo_visualization_backend/requirements.txt
