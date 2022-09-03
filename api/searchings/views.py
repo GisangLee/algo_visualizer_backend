@@ -50,7 +50,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         result = []
 
-        #data.sort()
+        # data.sort()
 
         print(f"data : {data}")
 
@@ -60,20 +60,22 @@ class SearchViewSet(mixins.BaseModelViewSet):
         while start <= end:
             mid = (start + end) // 2
 
-            result.append(mid)
             print(f"mid : {mid}")
 
             print(f"data[mid] : {data[mid]}")
             print(f"target : {target}")
 
             if data[mid] == target:
+                result.append(mid)
                 break
 
             elif data[mid] < target:
                 start = mid + 1
+                result.append(start)
 
             else:
-                end = mid -1
+                end = mid - 1
+                result.append(end)
 
         return result
 
@@ -89,6 +91,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
         """
 
         return 0
+
     @swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
     def list(self, request):
 
@@ -98,7 +101,7 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
         if search_type is None or initial_data is None or target is None:
             return Response(Error.error("데이터 혹은 탐색 알고리즘 모두 지정 해야합니다."), status=status.HTTP_400_BAD_REQUEST)
-        
+
         data = initial_data.split(",")
         data = [int(x) for x in data]
 
