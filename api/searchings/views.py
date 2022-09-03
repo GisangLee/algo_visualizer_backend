@@ -93,9 +93,9 @@ class SearchViewSet(mixins.BaseModelViewSet):
 
             k = arr[i] % h_len
 
-            if h_arr[k] is not 0:
+            if h_arr[k] != 0:
 
-                while h_arr[k] is not 0:
+                while h_arr[k] != 0:
 
                     k = (k + 1) % h_len
                     h_arr[k] = arr[i]
