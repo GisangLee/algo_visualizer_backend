@@ -109,17 +109,22 @@ class SearchViewSet(mixins.BaseModelViewSet):
             result (list): 해시 탐색 과정이 전부 담긴 2차원 배열
 
         """
-        k = target % len(data)
 
-        while data[k] is not 0:
+        hash_table = self.__hash_table(data)
 
-            if data[k] is target:
-                return k
+        key = target % len(hash_table)
 
-            else:
-                k = (k+1) % len(data)
+        result = []
 
-        return 'Not Found'
+        # 찾고자 하는 값이 나올때까지
+        while (hash_table[key] != target):
+            result.append(key)
+            # 원하는 결과가 아니면 +1
+            key = (key + 1) % len(hash_table)
+
+        result.append(key + 1)
+
+        return result
 
     @ swagger_auto_schema(manual_parameters=bubble_sorts_doc.search_algo, tags=["탐색 알고리즘"], operation_description="linear, binary")
     def list(self, request):
@@ -145,11 +150,8 @@ class SearchViewSet(mixins.BaseModelViewSet):
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         elif search_type == "hash":
-
-            hash_table = self.__hash_table(data)
-            print(f"hash table : {hash_table}")
-            # searched_index = self.__hash_search(hash_table, target)
-            # print(f"result : {searched_index}")
+            searched_index = self.__hash_search(data, target)
+            print(f"result : {searched_index}")
             return Response(Success.response(self.__class__.__name__, request.method, searched_index, 200))
 
         else:
