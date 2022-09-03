@@ -33,4 +33,4 @@ services:
       - .:/usr/src/algo_visualization_backend
 
     command: >
-      sh -c "cd ./algo_visualization_backend & gunicorn config.wsqi.application --bind 0.0.0.0:8000"
+      sh -c "gunicorn config.wsqi.application --bind 0.0.0.0:8000"
